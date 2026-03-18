@@ -1,1096 +1,1144 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIRNIX用賀店 | 無料体験予約</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
-<style>
-  /* ===== RESET & BASE ===== */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #ffffff;
-    --text: #111111;
-    --text-sub: #444444;
-    --accent: #E84D0E;
-    --accent-dark: #C03A00;
-    --accent-light: #FFF0EB;
-    --border: #E8E8E8;
-    --surface: #F7F7F7;
-    --surface2: #FAFAFA;
-    --gold: #C89B3C;
-    --font-jp: 'Noto Sans JP', sans-serif;
-    --font-en: 'Oswald', sans-serif;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-jp);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ===== UTILITIES ===== */
-  .container {
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .section {
-    padding: 56px 0;
-  }
-
-  .section--gray { background: var(--surface); }
-  .section--dark { background: #111111; color: #ffffff; }
-  .section--accent-light { background: var(--accent-light); }
-
-  strong, .bold { font-weight: 700; }
-  .accent { color: var(--accent); }
-  .accent-bold { color: var(--accent); font-weight: 700; }
-
-  /* ===== DIVIDER ===== */
-  .divider {
-    width: 40px;
-    height: 3px;
-    background: var(--accent);
-    margin: 16px auto;
-    border-radius: 2px;
-  }
-
-  /* ===== LABEL BADGE ===== */
-  .badge {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 2px;
-    letter-spacing: 0.05em;
-    margin-bottom: 10px;
-  }
-
-  .badge--gold {
-    background: var(--gold);
-  }
-
-  .badge--outline {
-    background: transparent;
-    color: var(--accent);
-    border: 1.5px solid var(--accent);
-  }
-
-  /* ===== CTA BUTTON ===== */
-  .btn-cta {
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    background: var(--accent);
-    color: #ffffff;
-    font-family: var(--font-jp);
-    font-size: 18px;
-    font-weight: 900;
-    text-align: center;
-    text-decoration: none;
-    padding: 20px 24px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(232, 77, 14, 0.35);
-    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-    line-height: 1.4;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-cta::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0);
-    transition: background 0.15s;
-  }
-
-  .btn-cta:hover {
-    background: var(--accent-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 24px rgba(232, 77, 14, 0.4);
-  }
-
-  .btn-cta:active { transform: translateY(0); }
-
-  .btn-cta .sub {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    opacity: 0.9;
-    margin-top: 4px;
-  }
-
-  .btn-cta-wrap {
-    padding: 32px 20px;
-    text-align: center;
-  }
-
-  /* ===== STICKY BOTTOM CTA ===== */
-  .sticky-cta {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border-top: 2px solid var(--accent);
-    padding: 12px 20px 18px;
-    z-index: 999;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
-  }
-
-  .sticky-cta .btn-cta {
-    font-size: 16px;
-    padding: 16px 20px;
-  }
-
-  /* ===== SECTION TITLE ===== */
-  .sec-title {
-    font-size: 22px;
-    font-weight: 900;
-    line-height: 1.4;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-
-  .sec-title--left { text-align: left; }
-
-  .sec-title .small {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--text-sub);
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  /* ===== LIST ===== */
-  .check-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .check-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .check-list li::before {
-    content: '✓';
-    color: var(--accent);
-    font-weight: 900;
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .arrow-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .arrow-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  .arrow-list li::before {
-    content: '▶';
-    flex-shrink: 0;
-  }
-
-  /* ===== COMPARE TABLE ===== */
-  .compare-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .compare-box {
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px 16px;
-    border: 1.5px solid var(--border);
-  }
-
-  .compare-box.airnix {
-    border-color: var(--accent);
-    background: var(--accent-light);
-  }
-
-  .compare-box .compare-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-sub);
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .compare-box.airnix .compare-title {
-    color: var(--accent);
-    border-color: rgba(232,77,14,0.2);
-  }
-
-  .compare-box ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .compare-box ul li {
-    font-size: 14px;
-    line-height: 1.4;
-    color: var(--text-sub);
-    padding-left: 14px;
-    position: relative;
-  }
-
-  .compare-box ul li::before {
-    content: '・';
-    position: absolute;
-    left: 0;
-    color: var(--text-sub);
-  }
-
-  .compare-box.airnix ul li {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .compare-box.airnix ul li::before {
-    content: '▶';
-    font-size: 10px;
-    color: var(--accent);
-    top: 3px;
-  }
-
-  /* ===== HIGHLIGHT BOX ===== */
-  .highlight-box {
-    background: var(--accent-light);
-    border-left: 4px solid var(--accent);
-    border-radius: 0 6px 6px 0;
-    padding: 20px 20px;
-    margin: 20px 0;
-  }
-
-  .highlight-box p {
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  /* ===== INFO CARD ===== */
-  .info-card {
-    background: var(--surface);
-    border-radius: 10px;
-    padding: 24px 20px;
-    margin: 16px 0;
-  }
-
-  /* ===== PLAN CARDS ===== */
-  .plan-card {
-    background: #fff;
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 20px;
-    margin: 16px 0;
-    position: relative;
-  }
-
-  .plan-card.recommended {
-    border-color: var(--accent);
-    box-shadow: 0 4px 24px rgba(232,77,14,0.15);
-  }
-
-  .plan-card.hook {
-    border-color: var(--gold);
-  }
-
-  .plan-badge {
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 16px;
-    border-radius: 0 0 6px 6px;
-    white-space: nowrap;
-  }
-
-  .plan-badge.gold { background: var(--gold); }
-
-  .plan-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-sub);
-    margin-bottom: 4px;
-    margin-top: 12px;
-    text-align: center;
-  }
-
-  .plan-price {
-    font-size: 42px;
-    font-weight: 900;
-    color: var(--accent);
-    text-align: center;
-    line-height: 1.1;
-    font-family: var(--font-en);
-  }
-
-  .plan-price .unit {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    font-family: var(--font-jp);
-  }
-
-  .plan-features {
-    list-style: none;
-    margin: 16px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .plan-features li {
-    font-size: 14px;
-    padding: 8px 12px;
-    background: var(--surface);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .plan-features li::before {
-    content: '✓';
-    color: var(--accent);
-    font-weight: 900;
-    flex-shrink: 0;
-  }
-
-  .plan-note {
-    font-size: 12px;
-    color: var(--text-sub);
-    margin-top: 8px;
-    text-align: center;
-  }
-
-  .plan-note span {
-    color: var(--accent);
-    font-weight: 700;
-  }
-
-  .plan-tag {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px dashed var(--border);
-  }
-
-  /* ===== TOKUTEN ===== */
-  .tokuten-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 16px;
-  }
-
-  .tokuten-item {
-    background: #fff;
-    border-radius: 8px;
-    padding: 16px 12px;
-    text-align: center;
-    border: 1.5px solid var(--border);
-  }
-
-  .tokuten-item .icon { font-size: 28px; margin-bottom: 8px; }
-  .tokuten-item .icon-label {
-    font-family: var(--font-en);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
-  }
-  .tokuten-item .title { font-size: 13px; font-weight: 700; }
-  .tokuten-item .desc { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
-
-  /* ===== URGENCY ===== */
-  .urgency-box {
-    background: #111;
-    color: #fff;
-    border-radius: 10px;
-    padding: 24px 20px;
-    text-align: center;
-    margin: 16px 0;
-  }
-
-  .urgency-box .num {
-    font-size: 56px;
-    font-weight: 900;
-    color: var(--accent);
-    line-height: 1;
-    font-family: var(--font-en);
-  }
-
-  .urgency-box .label {
-    font-size: 14px;
-    color: rgba(255,255,255,0.7);
-    margin-top: 4px;
-  }
-
-  /* ===== ANXIETY ===== */
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-    padding: 20px 0;
-  }
-
-  .faq-q {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .faq-q::before {
-    content: 'Q';
-    background: var(--accent);
-    color: #fff;
-    width: 22px;
-    height: 22px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .faq-a {
-    font-size: 14px;
-    color: var(--text-sub);
-    padding-left: 30px;
-    line-height: 1.7;
-  }
-
-  /* ===== EMOTION ===== */
-  .emotion-box {
-    text-align: center;
-    padding: 8px 0;
-  }
-
-  .emotion-box .quote {
-    font-size: 20px;
-    font-weight: 900;
-    line-height: 1.6;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-
-  .emotion-box .sub {
-    font-size: 14px;
-    color: var(--text-sub);
-  }
-
-  /* ===== STEP FLOW ===== */
-  .step-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-  }
-
-  .step-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    position: relative;
-    padding-bottom: 24px;
-  }
-
-  .step-item:last-child { padding-bottom: 0; }
-
-  .step-num {
-    width: 36px;
-    height: 36px;
-    background: var(--accent);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 16px;
-    flex-shrink: 0;
-    font-family: var(--font-en);
-    position: relative;
-    z-index: 1;
-  }
-
-  .step-item::before {
-    content: '';
-    position: absolute;
-    left: 17px;
-    top: 36px;
-    width: 2px;
-    height: calc(100% - 36px);
-    background: var(--border);
-  }
-
-  .step-item:last-child::before { display: none; }
-
-  .step-body { flex: 1; }
-  .step-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-  .step-desc { font-size: 14px; color: var(--text-sub); }
-
-  /* ===== FOOTER ===== */
-  .footer {
-    background: #111;
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 32px 20px 80px;
-    font-size: 12px;
-    line-height: 2;
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 400px) {
-    .plan-price { font-size: 36px; }
-    .compare-wrap { grid-template-columns: 1fr; }
-    .tokuten-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (min-width: 768px) {
-    body { font-size: 17px; }
-    .section { padding: 72px 0; }
-    .sticky-cta { display: none; }
-  }
-
-  /* ===== ANIMATIONS ===== */
-  @keyframes pulse-cta {
-    0%, 100% { box-shadow: 0 4px 20px rgba(232,77,14,0.35); }
-    50% { box-shadow: 0 4px 28px rgba(232,77,14,0.55); }
-  }
-
-  .btn-cta { animation: pulse-cta 2.5s ease-in-out infinite; }
-  .btn-cta:hover { animation: none; }
-
-  /* tag styles */
-  .tag-line {
-    font-size: 13px;
-    color: var(--text-sub);
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .big-text {
-    font-size: 26px;
-    font-weight: 900;
-    line-height: 1.4;
-    text-align: center;
-  }
-
-  .mid-text {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.6;
-    text-align: center;
-  }
-
-  .note-text {
-    font-size: 13px;
-    color: var(--text-sub);
-    line-height: 1.7;
-  }
-
-  .center { text-align: center; }
-  .mt8 { margin-top: 8px; }
-  .mt16 { margin-top: 16px; }
-  .mt24 { margin-top: 24px; }
-  .mt32 { margin-top: 32px; }
-  .mb8 { margin-bottom: 8px; }
-  .mb16 { margin-bottom: 16px; }
-  .mb24 { margin-bottom: 24px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIRNIX用賀店 | 無料体験予約</title>
+  <meta name="description" content="用賀で短時間でもしっかり結果を出したい方へ。AIRNIX用賀店の低酸素トレーニングを無料体験。月額5,980円の一番人気プランを中心に、あなたに合った通い方をご提案します。" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --sub: #555555;
+      --line: #e8e8e8;
+      --accent: #0f62fe;
+      --cta: #e4572e;
+      --cta-hover: #cc4721;
+      --soft: #f7f9fc;
+      --soft-accent: #eef4ff;
+      --warning: #fff4ec;
+      --danger: #c62828;
+      --success: #0b7a48;
+      --max: 1120px;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(17, 17, 17, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+        "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      letter-spacing: 0.02em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-tight {
+      padding: 40px 0;
+    }
+
+    .section-soft {
+      background: var(--soft);
+    }
+
+    .section-accent {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--soft-accent);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      line-height: 1.35;
+      letter-spacing: 0.01em;
+    }
+
+    h1 {
+      font-size: clamp(28px, 6.8vw, 48px);
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(24px, 5.6vw, 36px);
+      font-weight: 800;
+    }
+
+    h3 {
+      font-size: clamp(18px, 4.8vw, 24px);
+      font-weight: 800;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--sub);
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--sub);
+      line-height: 1.7;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .muted {
+      color: var(--sub);
+    }
+
+    .accent {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .danger {
+      color: var(--danger);
+      font-weight: 800;
+    }
+
+    .price {
+      font-size: clamp(30px, 8vw, 52px);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .strike {
+      text-decoration: line-through;
+      color: var(--sub);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-soft {
+      background: #fff;
+      border: 1px solid #dce7ff;
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-warning {
+      background: var(--warning);
+      border: 1px solid #ffd5bf;
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .hero {
+      padding: 28px 0 44px;
+      background:
+        radial-gradient(circle at top right, rgba(15, 98, 254, 0.08), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .hero-box {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid #e6eefc;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 26px 20px;
+    }
+
+    .hero-copy {
+      margin-bottom: 18px;
+    }
+
+    .hero-copy .subcopy {
+      font-size: clamp(18px, 4.8vw, 24px);
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .hero-list,
+    .bullet-list,
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-list li,
+    .bullet-list li,
+    .check-list li {
+      position: relative;
+      padding-left: 1.4em;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .hero-list li::before,
+    .bullet-list li::before {
+      content: "・";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .check-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 800;
+      color: var(--success);
+    }
+
+    .hero-points {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0 24px;
+    }
+
+    .hero-point {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .offer-box {
+      margin-top: 22px;
+      background: #fff;
+      border: 1px solid #ffd2c4;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .offer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .badge-accent {
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .badge-danger {
+      color: #fff;
+      background: var(--danger);
+    }
+
+    .badge-soft {
+      color: var(--accent);
+      background: var(--soft-accent);
+    }
+
+    .cta-wrap {
+      margin-top: 18px;
+    }
+
+    .cta-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 58px;
+      border-radius: 999px;
+      background: var(--cta);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      padding: 14px 22px;
+      text-align: center;
+      box-shadow: 0 14px 24px rgba(228, 87, 46, 0.24);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--cta-hover);
+      transform: translateY(-1px);
+    }
+
+    .cta-note {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--sub);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .cta-sub {
+      margin-top: 8px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--sub);
+    }
+
+    .compare {
+      display: grid;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .compare-card {
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .compare-card.airnix {
+      border-color: #dce7ff;
+      background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    }
+
+    .flow {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .flow-step .num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .plan-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .plan-card {
+      position: relative;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 24px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .plan-card.recommended {
+      border: 2px solid var(--accent);
+      background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+      transform: none;
+    }
+
+    .plan-card.light {
+      background: #fffdf9;
+      border-color: #ffe2bf;
+    }
+
+    .plan-card.premium {
+      background: #fcfcfc;
+    }
+
+    .plan-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #f3f3f3;
+      color: var(--text);
+    }
+
+    .plan-card.recommended .plan-label {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .plan-card.light .plan-label {
+      background: #fff1dc;
+      color: #8a4b00;
+    }
+
+    .plan-title {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .plan-price {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .plan-price span {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .plan-desc {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .plan-note {
+      font-size: 13px;
+      color: var(--sub);
+      margin-top: 10px;
+      line-height: 1.7;
+    }
+
+    .plan-push {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(15, 98, 254, 0.06);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .campaign-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .campaign-item {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .campaign-number {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .campaign-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .campaign-value {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .urgency-box {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .urgency-item {
+      border-radius: 18px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ffd8d8;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .faq-item {
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .faq-q {
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-cta {
+      padding: 56px 0 70px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+    }
+
+    .sticky-cta {
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    }
+
+    .sticky-cta .inner {
+      width: min(100%, 720px);
+      margin: 0 auto;
+    }
+
+    .sticky-cta .cta-button {
+      min-height: 54px;
+      font-size: 16px;
+    }
+
+    .sticky-cta .mini {
+      margin-top: 6px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--sub);
+    }
+
+    .divider {
+      width: 56px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin: 0 auto 18px;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 80px 0;
+      }
+
+      .hero {
+        padding: 48px 0 64px;
+      }
+
+      .hero-box {
+        padding: 42px;
+      }
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .compare {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .campaign-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .plan-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+      }
+
+      .faq-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .urgency-box {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      .section {
+        padding: 48px 0;
+      }
+
+      .hero {
+        padding-top: 18px;
+      }
+
+      .container {
+        width: min(100% - 24px, var(--max));
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .hero-box {
+        padding: 20px 16px;
+        border-radius: 20px;
+      }
+
+      .card,
+      .card-soft,
+      .card-warning,
+      .plan-card,
+      .compare-card,
+      .faq-item,
+      .urgency-item {
+        padding: 18px 16px;
+      }
+
+      .plan-title {
+        font-size: 22px;
+      }
+
+      .plan-price {
+        font-size: 32px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ① ファーストビュー -->
-<section style="background: linear-gradient(160deg, #111111 0%, #1e1e1e 60%, #2a1a0a 100%); color: #fff; padding: 48px 0 40px;">
-  <div class="container">
-    <div class="badge">用賀でジムを探している方へ</div>
-    <h1 style="font-size: 28px; font-weight: 900; line-height: 1.45; margin-bottom: 20px;">
-      月額<span style="font-size: 44px; color: var(--accent); font-family: var(--font-en);">3,980</span><span style="font-size: 18px;">円</span>で始められる<br>
-      短時間で<span style="color: var(--accent);">"しっかり結果が出る"</span>ジム
-    </h1>
+  <!-- ① ファーストビュー -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-box">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <span class="eyebrow">用賀でジムを探している方へ</span>
+            <h1>たった30分で<br><span class="accent">脂肪燃焼が加速する</span><br>低酸素トレーニングジム</h1>
+            <p class="lead">短時間でも、しっかり結果を出したい方へ。<br>普通のジムで続かなかった方でも、効率よく続けやすい仕組みがあります。</p>
 
-    <p style="font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 24px; line-height: 1.8;">
-      低酸素トレーニングで<br>
-      <strong style="color: #fff; font-size: 17px;">「30分でも脂肪燃焼を実感」</strong>
-    </p>
+            <div class="hero-points">
+              <div class="hero-point">忙しくても続く</div>
+              <div class="hero-point">短時間で効率よく痩せる</div>
+              <div class="hero-point">初心者でも安心</div>
+            </div>
 
-    <ul class="check-list" style="margin-bottom: 32px;">
-      <li style="color: rgba(255,255,255,0.9);">忙しくても続く</li>
-      <li style="color: rgba(255,255,255,0.9);">短時間で効率よく痩せる</li>
-      <li style="color: rgba(255,255,255,0.9);">初心者でも安心</li>
-    </ul>
+            <div class="cta-wrap">
+              <a href="#reserve" class="cta-button">無料体験を予約する</a>
+              <p class="cta-note">30秒で完了・初心者OK・無理な勧誘なし</p>
+            </div>
+          </div>
 
-    <a href="#contact" class="btn-cta">
-      ▶ 無料体験を予約する
-      <span class="sub">30秒・完全無料</span>
-    </a>
-
-    <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 12px 16px; display: flex; align-items: center; gap: 10px;">
-        
-        <span style="font-size: 14px; color: rgba(255,255,255,0.85);">入会金 <s style="opacity:.5">13,000円</s> → <strong style="color: var(--accent);">今だけ0円</strong></span>
-      </div>
-      <div style="background: rgba(232,77,14,0.2); border: 1px solid rgba(232,77,14,0.5); border-radius: 6px; padding: 12px 16px; display: flex; align-items: center; gap: 10px;">
-        
-        <span style="font-size: 14px; color: rgba(255,255,255,0.9);">ライトプラン（月額3,980円）は<strong style="color: var(--accent);">残り7名</strong></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ② 検索意図訴求 -->
-<section class="section section--gray">
-  <div class="container">
-    <p class="center" style="font-size: 14px; color: var(--text-sub); margin-bottom: 16px; font-weight: 700; letter-spacing: 0.05em;">用賀でジムを探しているあなたへ</p>
-    <div class="info-card">
-      <ul class="check-list">
-        <li>できるだけ短時間で痩せたい</li>
-        <li>普通のジムでは続かなかった</li>
-        <li>効率よく結果を出したい</li>
-      </ul>
-    </div>
-    <div style="margin-top: 20px; text-align: center; background: var(--accent); color: #fff; border-radius: 8px; padding: 16px 20px;">
-      <p style="font-size: 16px; font-weight: 900;">— そんな方のためのジムです —</p>
-    </div>
-  </div>
-</section>
-
-<!-- ③ 感情訴求 -->
-<section class="section">
-  <div class="container">
-    <div class="emotion-box">
-      <p class="quote" style="font-size: 22px;">
-        「また続かなかった…」<br>
-        「頑張っても変わらない…」
-      </p>
-    </div>
-    <div class="highlight-box" style="text-align: center; margin-top: 24px;">
-      <p style="font-size: 18px; font-weight: 900; color: var(--text);">
-        でもそれは<br>
-        <strong style="color: var(--accent);">あなたの問題ではありません</strong>
-      </p>
-    </div>
-    <p class="big-text mt24" style="font-size: 22px;">
-      やり方が<br>間違っていただけです
-    </p>
-  </div>
-</section>
-
-<!-- ④ 差別化 -->
-<section class="section section--gray">
-  <div class="container">
-    <div class="badge">普通のジムとの違い</div>
-    <h2 class="sec-title" style="margin-top: 8px;">なぜAIRNIXで<br>結果が出るのか？</h2>
-    <div class="compare-wrap">
-      <div class="compare-box">
-        <p class="compare-title">一般的なジム</p>
-        <ul>
-          <li>長時間必要</li>
-          <li>効果が出るまで時間がかかる</li>
-          <li>続かない</li>
-        </ul>
-      </div>
-      <div class="compare-box airnix">
-        <p class="compare-title">AIRNIX<br>低酸素トレーニング</p>
-        <ul>
-          <li>30分でもしっかり高負荷</li>
-          <li>短時間で脂肪燃焼が進む</li>
-          <li>だから結果が出て続く</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ⑤ WHY（仕組み説明） -->
-<section class="section">
-  <div class="container">
-    <div class="badge">なぜ短時間で効果があるのか</div>
-    <h2 class="sec-title" style="margin-top: 8px; font-size: 20px;">低酸素環境の仕組み</h2>
-    <div class="info-card" style="text-align: center;">
-      <p style="font-size: 16px; line-height: 1.9;">
-        低酸素環境では<br>
-        体は<strong>酸素不足</strong>と判断します
-      </p>
-      <div style="margin: 20px 0; color: var(--accent); font-size: 24px; font-weight: 900;">↓</div>
-      <p style="font-size: 15px; color: var(--text-sub); line-height: 1.9;">
-        その結果
-      </p>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
-      <div style="background: var(--accent-light); border-radius: 8px; padding: 16px 20px; border-left: 4px solid var(--accent);">
-        <p style="font-size: 16px; font-weight: 700;">少ない運動でも<br>強い運動と同じ負荷がかかる</p>
-      </div>
-    </div>
-
-    <div class="highlight-box mt24">
-      <p class="center" style="font-size: 18px; font-weight: 900;">
-        つまり<br><br>
-        <strong>短時間でも<br>脂肪燃焼・体力向上が<br>効率的に進む</strong>
-      </p>
-    </div>
-
-    <div class="btn-cta-wrap">
-      <a href="#contact" class="btn-cta">
-        ▶ 無料体験で実際に体感できます
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ⑥ ベネフィット（結果価値） -->
-<section class="section section--gray">
-  <div class="container">
-    <div class="badge">多くの方が実感</div>
-    <h2 class="sec-title" style="margin-top: 8px;">実際に体に起こる変化</h2>
-    <ul class="check-list">
-      <li><strong>30分でもしっかり汗をかく</strong></li>
-      <li>運動後の消耗感が違う<br><span style="font-size: 13px; color: var(--text-sub);">（効いた感覚）</span></li>
-      <li>継続するほど体が引き締まる</li>
-    </ul>
-    <div style="margin-top: 24px; text-align: center; background: #111; color: #fff; border-radius: 8px; padding: 20px;">
-      <p style="font-size: 17px; font-weight: 900; line-height: 1.7;">
-        「やった分だけ変わる」<br>を実感できます
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ⑦ 体験価値 -->
-<section class="section">
-  <div class="container">
-    <div class="badge">無料体験の内容</div>
-    <h2 class="sec-title" style="margin-top: 8px;">まずは<span style="color: var(--accent);">"結果の違い"</span>を<br>体感してください</h2>
-
-    <div class="step-wrap mt24">
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <p class="step-title">30分の低酸素トレーニング</p>
-          <p class="step-desc">実際の環境でトレーニングを体験</p>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <p class="step-title">通常運動との違いを実感</p>
-          <p class="step-desc">体感でわかる圧倒的な効率の差</p>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <p class="step-title">初心者でも安心サポート</p>
-          <p class="step-desc">スタッフが丁寧にサポートします</p>
+          <div class="offer-box">
+            <div class="offer-row">
+              <span class="badge badge-accent">今だけ限定</span>
+              <span class="badge badge-danger">ライトプラン 残り7名</span>
+            </div>
+            <p class="small">まずは結果を体感したい方へ。<br>体験当日入会で特典が適用されます。</p>
+            <p><strong>入会金 <span class="strike">13,000円</span> → <span class="danger">0円</span></strong></p>
+            <p class="small">継続しやすさと結果のバランスで選ぶなら、<strong>一番人気は月額5,980円のメインプラン</strong>です。<br>価格重視で始めたい方は月額3,980円のライトプランもご用意しています。</p>
+          </div>
         </div>
       </div>
     </div>
+  </header>
 
-    <div class="highlight-box mt24">
-      <p style="font-size: 16px; font-weight: 700; text-align: center;">
-        「本当に効果があるか」を<br>その場で確認できます
-      </p>
-    </div>
+  <main>
 
-    <div class="btn-cta-wrap">
-      <a href="#contact" class="btn-cta">
-        ▶ 無料体験を予約する
-        <span class="sub">30秒</span>
-      </a>
+    <!-- ② 検索意図訴求 -->
+    <section class="section">
+      <div class="container center">
+        <span class="eyebrow">こんな悩みはありませんか？</span>
+        <h2>用賀でジムを探しているあなたへ</h2>
+        <div class="card" style="max-width: 760px; margin: 20px auto 0;">
+          <ul class="bullet-list">
+            <li>できるだけ短時間で痩せたい</li>
+            <li>普通のジムでは続かなかった</li>
+            <li>効率よく結果を出したい</li>
+          </ul>
+          <p style="margin-top: 16px; font-size: 17px;"><strong>そんな方のためのジムです。</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ 感情訴求 -->
+    <section class="section section-soft">
+      <div class="container center">
+        <span class="eyebrow">あなたのせいではありません</span>
+        <h2>「また続かなかった…」<br>「頑張っても変わらない…」</h2>
+        <p class="lead">でも、それはあなたの問題ではありません。</p>
+        <div class="card-soft" style="max-width: 760px; margin: 20px auto 0;">
+          <p style="font-size: 20px; font-weight: 800;">やり方が<br><span class="accent">間違っていただけです。</span></p>
+          <p style="margin-top: 12px;">正しいやり方に変えれば、体は変わります。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ④ 差別化 -->
+    <section class="section">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">DIFFERENCE</span>
+          <h2>普通のジムとの違い</h2>
+          <p class="lead">同じ「運動」でも、かかる負荷がまったく違います。</p>
+        </div>
+
+        <div class="compare">
+          <div class="compare-card">
+            <h3>一般的なジム</h3>
+            <ul class="bullet-list">
+              <li>長時間必要</li>
+              <li>効果が出るまで時間がかかる</li>
+              <li>続かない</li>
+            </ul>
+          </div>
+          <div class="compare-card airnix">
+            <h3>AIRNIX<br>低酸素トレーニング</h3>
+            <ul class="bullet-list">
+              <li>30分でもしっかり高負荷</li>
+              <li>短時間で脂肪燃焼が進む</li>
+              <li>だから結果が出て続く</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ WHY（仕組み説明） -->
+    <section class="section section-accent">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">WHY AIRNIX</span>
+          <h2>なぜ短時間でも<br>効率よく結果が出るのか？</h2>
+        </div>
+
+        <div class="grid" style="max-width: 860px; margin: 24px auto 0;">
+          <div class="card">
+            <h3>低酸素環境の仕組み</h3>
+            <p>AIRNIXは、酸素が少し薄い環境でトレーニングします。<br>体が「酸素が足りない」と感じると、<strong>同じ動きでも普通より強い負荷</strong>がかかります。</p>
+            <div class="flow">
+              <div class="flow-step">
+                <div class="num">1</div>
+                <div>
+                  <p><strong>少ない酸素の中で体を動かす</strong></p>
+                  <p class="small">体が普段より強く反応しようとします。</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="num">2</div>
+                <div>
+                  <p><strong>少ない運動でも高い負荷がかかる</strong></p>
+                  <p class="small">普通のジムで長時間かけてかける負荷を、短時間で得られます。</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="num">3</div>
+                <div>
+                  <p><strong>30分でも脂肪燃焼・体力向上が進む</strong></p>
+                  <p class="small">忙しい方でも、限られた時間で効率よく取り組めます。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-soft">
+            <h3>なぜ続きやすいのか？</h3>
+            <p>普通のジムは、<strong>長時間・高頻度</strong>でないと効果を感じにくく、それが「続かない」原因になります。</p>
+            <p>AIRNIXは<strong>30分でも手応えを感じられる</strong>ので、「やった感」があります。<br>結果が出るから、また来たくなる。だから続きます。</p>
+            <p><strong>短時間 → 効果を実感 → また続ける。</strong><br>この好循環がAIRNIXの強みです。</p>
+
+            <div class="cta-wrap">
+              <a href="#reserve" class="cta-button">無料体験を予約する</a>
+              <p class="cta-note">30秒で完了・初心者OK・無理な勧誘なし</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ ベネフィット -->
+    <section class="section">
+      <div class="container center">
+        <span class="eyebrow">BENEFIT</span>
+        <h2>多くの方が実感している変化</h2>
+        <div class="card" style="max-width: 760px; margin: 20px auto 0;">
+          <ul class="bullet-list">
+            <li>30分でもしっかり汗をかく</li>
+            <li>運動後の消耗感が違う（効いた感覚）</li>
+            <li>継続するほど体が引き締まる</li>
+          </ul>
+          <p style="margin-top: 16px;"><strong>「やった分だけ変わる」を実感できます。</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ 体験価値 -->
+    <section class="section section-soft">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">TRIAL VALUE</span>
+          <h2>まずは"結果の違い"を<br>体感してください</h2>
+        </div>
+
+        <div class="grid" style="max-width: 860px; margin: 24px auto 0;">
+          <div class="card">
+            <div class="flow">
+              <div class="flow-step">
+                <div class="num">1</div>
+                <div>
+                  <p><strong>30分の低酸素トレーニング</strong></p>
+                  <p class="small">実際の環境でトレーニングを体験します。</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="num">2</div>
+                <div>
+                  <p><strong>通常運動との違いを実感</strong></p>
+                  <p class="small">体感でわかる効率の差をその場で確認できます。</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="num">3</div>
+                <div>
+                  <p><strong>初心者でも安心サポート</strong></p>
+                  <p class="small">スタッフが丁寧にサポートします。</p>
+                </div>
+              </div>
+            </div>
+            <p style="margin-top: 16px;"><strong>「本当に効果があるか」を、その場で確認できます。</strong></p>
+          </div>
+
+          <div class="card-soft">
+            <h3>体験でわかること</h3>
+            <ul class="check-list">
+              <li>30分でも十分に負荷を感じられるか</li>
+              <li>自分でも続けられそうか</li>
+              <li>どのプランが合うか</li>
+            </ul>
+            <div class="cta-wrap">
+              <a href="#reserve" class="cta-button">無料体験を予約する</a>
+              <p class="cta-note">30秒で完了・初心者OK・無理な勧誘なし</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ キャンペーン -->
+    <section class="section">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">LIMITED CAMPAIGN</span>
+          <h2>今だけ限定キャンペーン</h2>
+          <p class="lead"><strong class="danger">今始めた人が一番お得です。</strong><br>キャンペーンは今月末まで。</p>
+        </div>
+
+        <div class="campaign-grid">
+          <div class="campaign-item">
+            <div class="campaign-number">01</div>
+            <div class="campaign-title">入会金</div>
+            <div class="campaign-value"><span class="strike">13,000円</span><br><span class="danger">→ 0円</span></div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-number">02</div>
+            <div class="campaign-title">無料体験</div>
+            <div class="campaign-value">完全無料で<br>体感</div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-number">03</div>
+            <div class="campaign-title">Tシャツ</div>
+            <div class="campaign-value">プレゼント</div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-number">04</div>
+            <div class="campaign-title">適用条件</div>
+            <div class="campaign-value" style="font-size: 22px;">体験当日入会で適用</div>
+          </div>
+        </div>
+
+        <div class="urgency-box" style="margin-top: 24px;">
+          <div class="urgency-item" style="text-align: center;">
+            <p class="small" style="margin-bottom: 4px;">ライトプラン 残り</p>
+            <p style="font-size: 52px; font-weight: 900; line-height: 1; color: var(--danger); margin: 0;">7<span style="font-size: 22px; font-weight: 800;">名</span></p>
+            <p class="small" style="margin-top: 6px;">枠がなくなり次第終了です</p>
+          </div>
+          <div class="urgency-item" style="text-align: center;">
+            <p class="small" style="margin-bottom: 4px;">キャンペーン期間</p>
+            <p style="font-size: 28px; font-weight: 900; line-height: 1.3; margin: 0;">今月末まで</p>
+            <p class="small" style="margin-top: 6px;">今始めた人が一番お得です</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 料金プラン -->
+    <section class="section section-accent">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">PLAN</span>
+          <h2>あなたに合ったプランを選べます</h2>
+          <p class="lead">迷ったら、<strong>一番人気のメインプラン</strong>がおすすめです。</p>
+        </div>
+
+        <div class="plan-grid">
+
+          <!-- ② メインプランを最初に表示 -->
+          <article class="plan-card recommended">
+            <div class="plan-label">★ 一番人気（おすすめ）</div>
+            <div class="plan-title">メインプラン</div>
+            <div class="plan-price">5,980<span>円 / 月</span></div>
+            <p class="plan-desc">料金と効果のバランスが最も良いプランです。</p>
+            <ul class="bullet-list">
+              <li>通い放題</li>
+              <li>1日1回</li>
+              <li>1年契約</li>
+              <li>用賀店限定</li>
+            </ul>
+            <div class="plan-push">
+              最も多くの方が選択。<br>継続しやすく、結果も出しやすいプランです。
+            </div>
+          </article>
+
+          <!-- ② ライトプランを2番目に表示 -->
+          <article class="plan-card light">
+            <div class="plan-label">価格重視向け</div>
+            <div class="plan-title">ライトプラン</div>
+            <div class="plan-price">3,980<span>円 / 月</span></div>
+            <p class="plan-desc">とにかく安く始めたい方向けの入口プランです。</p>
+            <ul class="bullet-list">
+              <li>通い放題</li>
+              <li>1日1回</li>
+              <li>2年契約</li>
+              <li>用賀店限定</li>
+              <li>新規会員限定</li>
+            </ul>
+            <div class="plan-push" style="background: rgba(228, 87, 46, 0.08);">
+              <strong class="danger">残り7名・今月末まで</strong><br>
+              価格重視で始めたい方に向いています。
+            </div>
+          </article>
+
+          <!-- ② プレミアムプランを最後に表示 -->
+          <article class="plan-card premium">
+            <div class="plan-label">本気で結果を出したい方向け</div>
+            <div class="plan-title">プレミアムプラン</div>
+            <div class="plan-price">9,800<span>円 / 月</span></div>
+            <p class="plan-desc">高頻度で通いたい方向けのプランです。</p>
+            <ul class="bullet-list">
+              <li>通い放題</li>
+              <li>1日2回利用可能</li>
+              <li>1年契約</li>
+              <li>用賀店限定</li>
+            </ul>
+            <div class="plan-push" style="background: rgba(17, 17, 17, 0.04);">
+              本気で体を変えたい方に向いています。
+            </div>
+          </article>
+
+        </div>
+
+        <div class="card" style="max-width: 820px; margin: 22px auto 0;">
+          <h3>迷った場合はメインプランがおすすめです</h3>
+          <ul class="bullet-list">
+            <li>最も選ばれている</li>
+            <li>無理なく続く</li>
+            <li>結果が出やすい</li>
+          </ul>
+        </div>
+
+        <div class="card-soft" style="max-width: 820px; margin: 18px auto 0;">
+          <h3>入会時の料金について</h3>
+          <p>入会日に、当月分は<strong>日割りで精算</strong>され、翌月分の月会費が決済されます。</p>
+          <ul class="bullet-list">
+            <li>月途中でも無駄な費用は発生しません</li>
+            <li>いつ入会しても損することはありません</li>
+          </ul>
+          <p><strong>安心して始められます。</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 不安解消 -->
+    <section class="section">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">FAQ</span>
+          <h2>こんな不安はありませんか？</h2>
+        </div>
+
+        <div class="urgency-box">
+          <div class="urgency-item">
+            <h3>今始めた人が一番お得です</h3>
+            <p><strong class="danger">ライトプランは残り7名。</strong><br>キャンペーンは<strong>今月末まで</strong>です。</p>
+            <p class="small">枠が埋まる前に体験しておくと、選べるプランの幅も広がります。</p>
+          </div>
+          <div class="urgency-item">
+            <h3>無駄な費用を心配しなくて大丈夫です</h3>
+            <p>入会日は当月分が日割り計算です。<br>月途中でも損なく始められます。</p>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q">初心者でも大丈夫？</div>
+            <p>初心者でも安心です。スタッフが丁寧にサポートしますので、お気軽にご参加ください。</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">途中でやめることはできる？</div>
+            <p>途中退会は可能です。ただし、契約満了までのお支払いが必要です。転居・妊娠・医師の判断などの特例は個別に対応いたします。</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">しつこい勧誘はある？</div>
+            <p>無理な勧誘は一切ありません。体験後にじっくりご検討いただけます。</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">休会はできますか？</div>
+            <p>月額1,100円で最大3ヶ月間の休会が可能です。休会した分は契約期間が延長されます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑪ CTA -->
+    <section class="section section-soft" id="reserve">
+      <div class="container">
+        <div class="card-soft center" style="max-width: 860px; margin: 0 auto;">
+          <span class="eyebrow">RESERVE NOW</span>
+          <h2>今すぐ無料体験を予約する</h2>
+          <p class="lead">短時間でも結果の違いを体感してください。</p>
+
+          <div class="grid" style="gap: 10px; max-width: 520px; margin: 22px auto 0;">
+            <div class="hero-point">完全無料</div>
+            <div class="hero-point">30秒で予約完了</div>
+            <div class="hero-point">無理な勧誘なし</div>
+          </div>
+
+          <div class="cta-wrap" style="max-width: 520px; margin: 22px auto 0;">
+            <a href="#" class="cta-button">無料体験を予約する</a>
+            <p class="cta-note">30秒で完了・初心者OK・無理な勧誘なし</p>
+          </div>
+
+          <p class="cta-sub">お電話でも受け付けております</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑫ クロージング -->
+    <section class="footer-cta">
+      <div class="container">
+        <div class="center" style="max-width: 760px; margin: 0 auto;">
+          <div class="divider"></div>
+          <h2>変わらない原因は<br>あなたではなく「やり方」です</h2>
+          <p class="lead">やり方を変えれば、体は変わります。</p>
+          <p style="font-size: 18px; font-weight: 800; margin-top: 18px;">まずは体験で違いを感じてください。</p>
+
+          <div class="cta-wrap" style="max-width: 520px; margin: 26px auto 0;">
+            <a href="#reserve" class="cta-button">無料体験を予約する</a>
+            <p class="cta-note">30秒で完了・初心者OK・無理な勧誘なし</p>
+          </div>
+
+          <div class="card-warning" style="max-width: 720px; margin: 24px auto 0; text-align: left;">
+            <p><strong>入会金 <span class="strike">13,000円</span> → <span class="danger">今だけ0円</span></strong></p>
+            <p><strong class="danger">ライトプラン残り7名</strong> / キャンペーンは<strong>今月末まで</strong></p>
+            <p class="small">今始めた人が一番お得です。<br>体験後に、あなたに合うプランを選べます。</p>
+          </div>
+
+          <p class="small" style="margin-top: 22px;">
+            AIRNIX 用賀店<br>
+            キャンペーンは今月末まで。予告なく終了する場合があります。<br>
+            ※ライトプランは新規会員・用賀店限定・2年契約<br>
+            ※各種特典は体験当日入会の方に適用されます
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-cta">
+    <div class="inner">
+      <a href="#reserve" class="cta-button">無料体験を予約する</a>
+      <div class="mini">30秒で完了・初心者OK・無理な勧誘なし</div>
     </div>
   </div>
-</section>
-
-<!-- ⑧ キャンペーン -->
-<section class="section" style="background: linear-gradient(135deg, #111 0%, #1e0d00 100%); color: #fff;">
-  <div class="container">
-    <p class="center" style="font-size: 12px; letter-spacing: 0.15em; color: var(--accent); font-weight: 700; margin-bottom: 12px;">LIMITED CAMPAIGN</p>
-    <h2 class="sec-title" style="color: #fff; font-size: 24px;">今だけ限定<br>キャンペーン</h2>
-    <div class="divider"></div>
-
-    <div class="tokuten-grid">
-      <div class="tokuten-item" style="background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); color: #fff;">
-        <div class="icon-label">01</div>
-        <div class="title" style="color: #fff;">入会金</div>
-        <div class="desc" style="color: rgba(255,255,255,0.6);"><s style="opacity:.5">13,000円</s></div>
-        <div style="font-size: 20px; font-weight: 900; color: var(--accent); margin-top: 4px;">→ 0円</div>
-      </div>
-      <div class="tokuten-item" style="background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); color: #fff;">
-        <div class="icon-label">02</div>
-        <div class="title" style="color: #fff;">無料体験</div>
-        <div class="desc" style="color: rgba(255,255,255,0.6);">完全無料で体感</div>
-      </div>
-      <div class="tokuten-item" style="background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); color: #fff;">
-        <div class="icon-label">03</div>
-        <div class="title" style="color: #fff;">Tシャツ</div>
-        <div class="desc" style="color: rgba(255,255,255,0.6);">プレゼント</div>
-      </div>
-      <div class="tokuten-item" style="background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); color: #fff;">
-        <div class="icon-label">04</div>
-        <div class="title" style="color: #fff;">適用条件</div>
-        <div class="desc" style="color: rgba(255,255,255,0.6);">体験当日入会で適用</div>
-      </div>
-    </div>
-
-    <div style="margin-top: 24px; border: 2px solid var(--accent); border-radius: 8px; padding: 16px 20px; text-align: center;">
-      <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 4px;">キャンペーン期間</p>
-      <p style="font-size: 20px; font-weight: 900; color: #fff;">今月末まで</p>
-    </div>
-  </div>
-</section>
-
-<!-- ⑨ 料金プラン -->
-<section class="section section--gray">
-  <div class="container">
-    <div class="badge">料金プラン</div>
-    <h2 class="sec-title" style="margin-top: 8px;">あなたに合ったプランを選んでください</h2>
-
-    <!-- ライトプラン -->
-    <div class="plan-card hook">
-      <div class="plan-badge gold">★ まずはここから（限定フック）</div>
-      <p class="plan-name" style="color: #B8860B; margin-top: 28px;">ライトプラン</p>
-      <div class="plan-price">3,980<span class="unit">円<span style="font-size: 13px; font-weight: 400; color: var(--text-sub);">/月</span></span></div>
-      <ul class="plan-features">
-        <li>通い放題</li>
-        <li>1日1回</li>
-      </ul>
-      <p class="plan-note">※2年契約　※用賀店限定　※新規会員限定</p>
-      <div style="background: #FFF8E1; border-radius: 6px; padding: 12px; margin-top: 12px; text-align: center; border: 1px solid #F0C060;">
-        <p style="font-size: 13px; color: #8B6914; font-weight: 700;">残り <span style="font-size: 22px; color: var(--accent); font-family: var(--font-en);">7</span> 名</p>
-      </div>
-      <p class="plan-tag">とにかく安く始めたい方向け</p>
-    </div>
-
-    <!-- メインプラン -->
-    <div class="plan-card recommended">
-      <div class="plan-badge">★ 一番人気（おすすめ）</div>
-      <p class="plan-name" style="color: var(--accent); margin-top: 28px;">メインプラン</p>
-      <div class="plan-price">5,980<span class="unit">円<span style="font-size: 13px; font-weight: 400; color: var(--text-sub);">/月</span></span></div>
-      <ul class="plan-features">
-        <li>通い放題</li>
-        <li>1日1回</li>
-        <li>1年契約</li>
-      </ul>
-      <p class="plan-note">※用賀店限定</p>
-      <div style="background: var(--accent-light); border-radius: 6px; padding: 12px; margin-top: 12px; border: 1px solid rgba(232,77,14,0.3);">
-        <p style="font-size: 13px; color: var(--accent-dark); font-weight: 700; line-height: 1.7;">
-          最も多くの方が選択<br>
-          継続しやすく結果が出やすい
-        </p>
-      </div>
-      <div style="text-align: center; margin-top: 14px; padding: 12px; background: var(--accent); border-radius: 6px;">
-        <p style="font-size: 14px; font-weight: 900; color: #fff;">料金と効果のバランスが<br>最も良いプランです</p>
-      </div>
-    </div>
-
-    <!-- プレミアムプラン -->
-    <div class="plan-card">
-      <p class="plan-name" style="margin-top: 0;">プレミアムプラン</p>
-      <div class="plan-price">9,800<span class="unit">円<span style="font-size: 13px; font-weight: 400; color: var(--text-sub);">/月</span></span></div>
-      <ul class="plan-features">
-        <li>通い放題</li>
-        <li><strong>1日2回利用可能</strong></li>
-        <li>1年契約</li>
-      </ul>
-      <p class="plan-note">※用賀店限定</p>
-      <p class="plan-tag">本気で結果を出したい方向け</p>
-    </div>
-
-    <!-- 選び方ガイド -->
-    <div style="background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 20px; margin-top: 8px;">
-      <p style="font-size: 14px; font-weight: 700; color: var(--text-sub); margin-bottom: 12px; text-align: center;">迷った場合は</p>
-      <p style="font-size: 20px; font-weight: 900; text-align: center; color: var(--text); margin-bottom: 16px;">
-        メインプランが<br>おすすめです
-      </p>
-      <ul class="check-list">
-        <li>最も選ばれている</li>
-        <li>無理なく続く</li>
-        <li>結果が出やすい</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ⑨-追加 入会時の料金説明 -->
-<section class="section">
-  <div class="container">
-    <div class="badge badge--outline">入会時の料金について</div>
-    <h2 class="sec-title" style="margin-top: 12px; font-size: 19px;">いつ入会しても<br><span style="color: var(--accent);">損しません</span></h2>
-    <div class="info-card">
-      <p style="font-size: 15px; font-weight: 700; margin-bottom: 12px;">入会日のお支払いについて</p>
-      <p style="font-size: 14px; color: var(--text-sub); line-height: 1.9;">
-        入会日に<strong style="color: var(--text);">当月分は日割りで精算</strong>され、<br>
-        翌月分の月会費が決済されます。
-      </p>
-    </div>
-    <ul class="check-list mt16">
-      <li>月途中でも無駄な費用は発生しません</li>
-      <li>いつ入会しても損することはありません</li>
-    </ul>
-    <div style="margin-top: 20px; text-align: center; background: var(--accent-light); border-radius: 8px; padding: 16px 20px; border: 1.5px solid rgba(232,77,14,0.3);">
-      <p style="font-size: 16px; font-weight: 900; color: var(--accent);">安心して始められます</p>
-    </div>
-  </div>
-</section>
-
-<!-- ⑨-緊急性 -->
-<section class="section section--accent-light">
-  <div class="container">
-    <h2 class="sec-title" style="font-size: 20px;">今始めるのが<br>一番お得です</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
-      <div class="urgency-box">
-        <p class="label">ライトプラン 残り</p>
-        <p class="num">7</p>
-        <p class="label" style="font-size: 16px; font-weight: 700; color: #fff;">名</p>
-      </div>
-      <div class="urgency-box">
-        <p class="label">キャンペーン</p>
-        <p style="font-size: 22px; font-weight: 900; color: var(--accent); line-height: 1.2; margin: 8px 0;">今月末<br>まで</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ⑩ 不安解消 -->
-<section class="section">
-  <div class="container">
-    <div class="badge">よくある不安</div>
-    <h2 class="sec-title" style="margin-top: 8px; font-size: 20px;">こんな不安はありませんか？</h2>
-    <div>
-      <div class="faq-item">
-        <p class="faq-q">初心者でも大丈夫？</p>
-        <p class="faq-a">初心者でも安心です。スタッフが丁寧にサポートしますので、お気軽にご参加ください。</p>
-      </div>
-      <div class="faq-item">
-        <p class="faq-q">途中でやめることはできる？</p>
-        <p class="faq-a">途中退会は可能です。ただし、契約満了までのお支払いが必要です。転居・妊娠・医師の判断などの特例は個別に対応いたします。</p>
-      </div>
-      <div class="faq-item">
-        <p class="faq-q">しつこい勧誘はある？</p>
-        <p class="faq-a">無理な勧誘は一切ありません。体験後にじっくりご検討いただけます。</p>
-      </div>
-      <div class="faq-item">
-        <p class="faq-q">休会はできますか？</p>
-        <p class="faq-a">月額1,100円で最大3ヶ月間の休会が可能です。休会した分は契約期間が延長されます。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ⑪ CTA -->
-<section id="contact" class="section" style="background: linear-gradient(160deg, #111 0%, #1e0d00 100%); color: #fff; padding: 64px 0;">
-  <div class="container">
-    <p class="center" style="font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 12px;">RESERVE NOW</p>
-    <h2 class="sec-title" style="color: #fff; font-size: 24px;">今すぐ<br>無料体験を予約する</h2>
-    <div class="divider"></div>
-    <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 24px 0; max-width: 300px; margin-left: auto; margin-right: auto;">
-      <li style="font-size: 14px; color: rgba(255,255,255,0.8); display: flex; gap: 8px; align-items: center;"><span style="color: var(--accent);">✓</span> 完全無料</li>
-      <li style="font-size: 14px; color: rgba(255,255,255,0.8); display: flex; gap: 8px; align-items: center;"><span style="color: var(--accent);">✓</span> 30秒で予約完了</li>
-      <li style="font-size: 14px; color: rgba(255,255,255,0.8); display: flex; gap: 8px; align-items: center;"><span style="color: var(--accent);">✓</span> 無理な勧誘なし</li>
-    </ul>
-    <a href="tel:0000000000" class="btn-cta" style="font-size: 20px; padding: 22px 24px;">
-      ▶ 今すぐ無料体験を予約する
-      <span class="sub">（30秒・完全無料）</span>
-    </a>
-    <p class="tag-line mt16" style="color: rgba(255,255,255,0.5);">お電話でも受け付けております</p>
-  </div>
-</section>
-
-<!-- ⑫ クロージング -->
-<section class="section">
-  <div class="container">
-    <div style="text-align: center; padding: 16px 0;">
-      <p style="font-size: 22px; font-weight: 900; line-height: 1.8; color: var(--text);">
-        変わらない原因は<br>
-        あなたではなく<br>
-        <span style="color: var(--accent);">「やり方」</span>です
-      </p>
-      <div class="divider" style="margin: 24px auto;"></div>
-      <p style="font-size: 18px; font-weight: 700; line-height: 1.9; color: var(--text-sub);">
-        やり方を変えれば<br>
-        <strong style="color: var(--text);">体は変わります</strong>
-      </p>
-    </div>
-
-    <div style="margin-top: 32px; background: var(--surface); border-radius: 12px; padding: 28px 20px; text-align: center;">
-      <p style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: var(--text-sub);">▶ まずは体験で違いを感じてください</p>
-      <a href="#contact" class="btn-cta">
-        ▶ 無料体験を予約する
-        <span class="sub">30秒・完全無料</span>
-      </a>
-      <p class="tag-line mt16">入会金 <s>13,000円</s> → <strong style="color: var(--accent);">今だけ0円</strong>　ライトプラン残り<strong style="color: var(--accent);">7名</strong></p>
-    </div>
-  </div>
-</section>
-
-<!-- フッター -->
-<footer class="footer">
-  <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">AIRNIX 用賀店</p>
-  <p>キャンペーンは今月末まで。予告なく終了する場合があります。</p>
-  <p>※ライトプランは新規会員・用賀店限定・2年契約</p>
-  <p>※各種特典は体験当日入会の方に適用されます</p>
-</footer>
-
-<!-- スティッキーCTA（スマホ用） -->
-<div class="sticky-cta">
-  <a href="#contact" class="btn-cta">
-    ▶ 無料体験を予約する
-    <span class="sub">30秒・完全無料 ｜ 残り7名</span>
-  </a>
-</div>
 
 </body>
 </html>
